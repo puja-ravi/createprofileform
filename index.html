@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Create Candidate Profile</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #74ebd5, #acb6e5);
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 650px;
+      background: #ffffff;
+      padding: 30px;
+      margin: auto;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 25px;
+    }
+    label {
+      display: block;
+      margin: 14px 0 6px;
+      font-weight: 600;
+      color: #555;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+      transition: border 0.3s;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+    .submit-btn {
+      background: #007bff;
+      color: #fff;
+      border: none;
+      padding: 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+      width: 100%;
+      transition: background 0.3s;
+    }
+    .submit-btn:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Create Candidate Profile</h2>
+    <form id="candidateForm">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" required>
+
+      <label for="phone">Phone</label>
+      <input type="tel" id="phone" required>
+
+      <label for="address">Address</label>
+      <textarea id="address" rows="2" required></textarea>
+
+      <label for="education">Education</label>
+      <textarea id="education" rows="3" required></textarea>
+
+      <label for="experience">Experience</label>
+      <textarea id="experience" rows="3"></textarea>
+
+      <label for="skills">Primary Skill</label>
+      <select id="skills" required>
+        <option value="">-- Select a skill --</option>
+        <option value="JavaScript">JavaScript</option>
+        <option value="Python">Python</option>
+        <option value="React">React</option>
+        <option value="SQL">SQL</option>
+        <option value="Project Management">Project Management</option>
+      </select>
+
+      <label for="resume">Upload Resume (PDF)</label>
+      <input type="file" id="resume" accept=".pdf" required>
+
+      <button type="submit" class="submit-btn">Submit Profile</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('candidateForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const address = document.getElementById('address').value;
+      const education = document.getElementById('education').value;
+      const experience = document.getElementById('experience').value;
+      const skill = document.getElementById('skills').value;
+      const resume = document.getElementById('resume').files[0];
+
+      if (!skill) {
+        alert("Please select a skill.");
+        return;
+      }
+
+      if (!resume || resume.type !== 'application/pdf') {
+        alert("Please upload a PDF resume.");
+        return;
+      }
+
+      console.log("Candidate Profile Submitted:");
+      console.log({ name, email, phone, address, education, experience, skill, resume });
+
+      alert("Profile submitted successfully!");
+      this.reset();
+    });
+  </script>
+
+</body>
+</html>
